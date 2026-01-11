@@ -14,15 +14,18 @@
             <div class="container">
                 <div class="nav-wrapper">
                     <div class="logo">
-                        <img src="https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/Screenshot 2026-01-12 001901.png" alt="KỶ NGUYÊN HEALTH CARE" class="logo-img">
+                        <img src="https://wecare247.com.vn/wp-content/uploads/2024/06/logo-full.svg" alt="KỶ NGUYÊN HEALTH CARE" class="logo-img">
                     </div>
-                    <ul class="nav-menu">
+                    <ul class="nav-menu" id="navMenu">
                         <li><a href="#home">Trang chủ</a></li>
                         <li><a href="#about">Về kỷ nguyên Healthcare</a></li>
                         <li><a href="#services">Dịch vụ</a></li>
                         <li><a href="#caregivers">Chăm sóc viên</a></li>
                         <li><a href="#contact">Liên hệ</a></li>
                     </ul>
+                    <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -62,19 +65,19 @@
             </div>
             <div class="media-logos">
                 <div class="media-logo">
-                    <img src="https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/logo-NCDT_200.jpg" alt="VnExpress">
+                    <img src="https://wecare247.com.vn/wp-content/uploads/2023/08/logo.svg" alt="VnExpress">
                 </div>
                 <div class="media-logo">
-                    <img src="https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/logo.svg" alt="Tuổi Trẻ">
+                    <img src="https://wecare247.com.vn/wp-content/uploads/2025/12/logo-NCDT_200.jpg" alt="Tuổi Trẻ">
                 </div>
                 <div class="media-logo">
-                    <img src="https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/mangsec-vn.png" alt="Thanh Niên">
+                    <img src="https://wecare247.com.vn/wp-content/uploads/2024/06/mangsec-vn.png" alt="Thanh Niên">
                 </div>
                 <div class="media-logo">
-                    <img src="https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/logo@2x.webp" alt="VTV">
+                    <img src="https://wecare247.com.vn/wp-content/uploads/2024/06/logo@2x.webp" alt="VTV">
                 </div>
                 <div class="media-logo">
-                    <img src="https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/static-logo.1-0-1.742f36bc45f3443d0e59.svg" alt="Dân Trí">
+                    <img src="https://wecare247.com.vn/wp-content/uploads/2023/08/static-logo.1-0-1.742f36bc45f3443d0e59.svg" alt="Dân Trí">
                 </div>
             </div>
         </div>
@@ -346,15 +349,15 @@
             <form class="form">
                 <div class="form-group">
                     <label for="name">Họ và Tên *</label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Số điện thoại *</label>
-                    <input type="text" id="phone" name="phone">
+                    <input type="tel" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email">
+                    <input type="email" id="email" name="email">
                 </div>
                 <button type="submit" class="btn-primary btn-submit">Nhận tư vấn miễn phí</button>
             </form>
