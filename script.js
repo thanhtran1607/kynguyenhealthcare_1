@@ -17,9 +17,88 @@ const form = document.querySelector('.form');
 if (form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong vòng 24h.');
+        
+        // Lấy các trường input
+        const nameInput = form.querySelector('#name');
+        const phoneInput = form.querySelector('#phone');
+        const emailInput = form.querySelector('#email');
+        
+        // Kiểm tra validation
+        let isValid = true;
+        let errorMessage = '';
+        
+        // Kiểm tra Họ và Tên (required)
+        if (!nameInput.value.trim()) {
+            isValid = false;
+            errorMessage = 'Vui lòng nhập Họ và Tên';
+            nameInput.focus();
+        }
+        // Kiểm tra Số điện thoại (required)
+        else if (!phoneInput.value.trim()) {
+            isValid = false;
+            errorMessage = 'Vui lòng nhập Số điện thoại';
+            phoneInput.focus();
+        }
+        // Kiểm tra định dạng số điện thoại
+        else if (phoneInput.value.trim() && !/^[0-9]{10,11}$/.test(phoneInput.value.replace(/\s/g, ''))) {
+            isValid = false;
+            errorMessage = 'Số điện thoại không hợp lệ. Vui lòng nhập 10-11 chữ số';
+            phoneInput.focus();
+        }
+        // Kiểm tra định dạng email nếu có nhập
+        else if (emailInput.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+            isValid = false;
+            errorMessage = 'Email không hợp lệ';
+            emailInput.focus();
+        }
+        
+        if (!isValid) {
+            // Hiển thị thông báo lỗi
+            showNotification(errorMessage, 'error');
+            return;
+        }
+        
+        // Nếu form hợp lệ, hiển thị thông báo thành công
+        showNotification('Cảm ơn bạn đã liên hệ! Chúng tôi đã ghi nhận thông tin của bạn và sẽ phản hồi trong vòng 24h.', 'success');
+        
+        // Reset form
         form.reset();
     });
+}
+
+// Hàm hiển thị thông báo
+function showNotification(message, type = 'success') {
+    // Xóa thông báo cũ nếu có
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Tạo element thông báo
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Thêm vào body
+    document.body.appendChild(notification);
+    
+    // Hiển thị với animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Tự động ẩn sau 5 giây
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 5000);
 }
 
 // Partner tabs
