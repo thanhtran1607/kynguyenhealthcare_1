@@ -614,7 +614,7 @@ section {
 .caregivers-left {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -626,7 +626,7 @@ section {
     justify-content: center;
     align-items: center;
     /* overflow: hidden; */
-    /* box-shadow: 0 10px 30px rgba(0, 105, 92, 0.2); */
+    box-shadow: 0 5px 30px rgba(0, 105, 92, 0.2);
     /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
 }
 
