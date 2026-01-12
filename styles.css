@@ -580,41 +580,339 @@ section {
 
 /* Caregivers Section */
 .caregivers {
-    background: #f8f9fa;
+    background: #e8f5e9;
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.caregivers-grid {
+.caregivers-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    width: 100%;
+    align-items: center;
+}
+
+.caregivers-left {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    margin-bottom: 3rem;
+    align-items: center;
 }
 
-.caregiver-item {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+.caregivers-image-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+    /* box-shadow: 0 10px 30px rgba(0, 105, 92, 0.2); */
+    /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
 }
 
-.caregiver-item:hover {
+/* .caregivers-image-wrapper:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 105, 92, 0.3);
+} */
+
+.caregivers-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
-.caregiver-item i {
+.caregivers-header {
+    text-align: center;
+    margin-bottom: 0;
+    opacity: 1;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 168, 89, 0.05) 0%, rgba(0, 105, 92, 0.08) 100%);
+    border-radius: 20px;
+    border: 2px solid rgba(0, 168, 89, 0.1);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 105, 92, 0.1);
+}
+
+.caregivers-title {
     font-size: 2.5rem;
-    color: #00A859;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #00695c;
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 105, 92, 0.1);
 }
 
-.caregiver-item p {
-    color: #666;
+.caregivers-brand {
+    font-size: 1.3rem;
+    color: #00A859;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.caregivers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 0.5rem 0;
+}
+
+.caregiver-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    padding: 0.3rem 0;
+}
+
+.caregiver-list-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.caregiver-list-item[data-index="0"].visible {
+    transition-delay: 0.1s;
+}
+
+.caregiver-list-item[data-index="1"].visible {
+    transition-delay: 0.2s;
+}
+
+.caregiver-list-item[data-index="2"].visible {
+    transition-delay: 0.3s;
+}
+
+.caregiver-list-item[data-index="3"].visible {
+    transition-delay: 0.4s;
+}
+
+.caregiver-list-item[data-index="4"].visible {
+    transition-delay: 0.5s;
+}
+
+.caregiver-list-item[data-index="5"].visible {
+    transition-delay: 0.6s;
+}
+
+.caregiver-list-item[data-index="6"].visible {
+    transition-delay: 0.7s;
+}
+
+.caregiver-list-item[data-index="7"].visible {
+    transition-delay: 0.8s;
+}
+
+.caregiver-list-item i {
+    color: #00A859;
+    font-size: 1.1rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.caregiver-list-item.visible i {
+    animation: checkmarkPop 0.5s ease;
+}
+
+@keyframes checkmarkPop {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.caregiver-list-item p {
+    color: #00695c;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
 }
 
 .caregivers-cta {
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.btn-caregiver {
+    background: #e8f5e9;
+    color: #00695c;
+    border: 2px solid #00A859;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 168, 89, 0.2);
+}
+
+.btn-caregiver:hover {
+    background: #00A859;
+    color: #ffffff;
+    border-color: #00A859;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 168, 89, 0.4);
+}
+
+.caregivers-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding: 1rem;
+}
+
+.caregivers-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.caregivers-image-wrapper:hover .caregivers-image img {
+    transform: scale(1.02);
+}
+
+/* Teaching Section */
+.teaching {
+    background: #ffffff;
+    padding: 5rem 0;
+}
+
+.teaching-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.teaching-section {
+    margin-bottom: 4rem;
+}
+
+.teaching-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00A859;
+    margin-bottom: 2rem;
     text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #00A859;
+}
+
+.teaching-table-wrapper {
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.teaching-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.teaching-table thead {
+    background: #00A859;
+    color: #ffffff;
+}
+
+.teaching-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.teaching-table th:first-child {
+    width: 120px;
+}
+
+.teaching-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s;
+}
+
+.teaching-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.teaching-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.teaching-table td {
+    padding: 1rem;
+    vertical-align: top;
+    color: #333;
+}
+
+.teaching-table td:first-child {
+    font-weight: 600;
+    color: #666;
+}
+
+.teaching-content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.teaching-content-list li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+}
+
+.teaching-content-list li:before {
+    content: "•";
+    color: #00A859;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+.teaching-internship {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 168, 89, 0.1) 0%, rgba(0, 105, 92, 0.15) 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 168, 89, 0.2);
+    text-align: center;
+}
+
+.internship-item {
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.internship-item strong {
+    color: #00A859;
+    font-size: 1.4rem;
+}
+
+.internship-item span {
+    color: #00A859;
+    font-weight: 600;
+    font-size: 1.4rem;
 }
 
 /* Reasons Section */
@@ -1000,8 +1298,14 @@ section {
         flex-shrink: 0;
     }
 
-    .caregivers-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .caregivers-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        
+    }
+
+    .caregivers-left {
+        order: -1;
     }
 
     .reasons-grid {
@@ -1140,6 +1444,7 @@ section {
         padding: 0 0.5rem;
     }
 
+
     /* Media Logos */
     .media-logos {
         gap: 1.5rem;
@@ -1230,15 +1535,36 @@ section {
         font-size: 1.2rem;
     }
 
-    /* Caregivers Grid */
-    .caregivers-grid {
+    /* Caregivers Section */
+    .caregivers-wrapper {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 0.5rem;
+        gap: 2rem;
     }
 
-    .caregiver-item {
-        padding: 1.5rem;
+    .caregivers-left {
+        order: -1;
+    }
+
+    .caregivers-header {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .caregivers-title {
+        font-size: 1.8rem;
+    }
+
+    .caregivers-brand {
+        font-size: 1rem;
+        letter-spacing: 0.3px;
+    }
+
+    .caregivers-image-wrapper {
+        border-radius: 15px;
+    }
+
+    .caregivers-image {
+        padding: 0.5rem;
     }
 
     /* Reasons Grid */

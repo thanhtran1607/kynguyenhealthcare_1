@@ -483,3 +483,81 @@ fadeInElements.forEach((element) => {
   element.style.transition = "opacity 0.6s, transform 0.6s";
   fadeInObserver.observe(element);
 });
+
+// Caregivers content fade on scroll (chỉ phần danh sách và button)
+const caregiversContent = document.querySelector(".caregivers-content");
+
+if (caregiversContent) {
+  const handleScroll = () => {
+    const rect = caregiversContent.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const contentTop = rect.top;
+    const contentHeight = rect.height;
+
+    // Tính toán opacity dựa trên vị trí scroll
+    // Khi content mới vào view từ trên, opacity tăng từ 0 lên 1
+    // Khi scroll xuống và content ra khỏi view, opacity giảm từ 1 xuống 0
+
+    let opacity = 0;
+
+    if (contentTop < windowHeight && contentTop > -contentHeight) {
+      // Content đang trong viewport
+      if (contentTop > 0) {
+        // Content đang vào view từ trên
+        const fadeInProgress = 1 - contentTop / windowHeight;
+        opacity = Math.max(0, Math.min(1, fadeInProgress));
+      } else {
+        // Content đã vào view, có thể fade out khi scroll xuống
+        const fadeOutProgress = Math.abs(contentTop) / (windowHeight * 0.5);
+        opacity = Math.max(0, Math.min(1, 1 - fadeOutProgress * 0.3));
+      }
+    } else if (contentTop <= -contentHeight) {
+      // Content đã scroll qua hoàn toàn
+      opacity = 0;
+    }
+
+    // Áp dụng opacity với smooth transition
+    caregiversContent.style.opacity = opacity;
+  };
+
+  // Thêm event listener cho scroll với throttle để tối ưu performance
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Gọi lần đầu để set giá trị ban đầu
+  handleScroll();
+}
+
+// Caregivers list items animation on scroll
+const caregiverListItems = document.querySelectorAll(".caregiver-list-item");
+const caregiversListContainer = document.querySelector(".caregivers-list");
+
+if (caregiversListContainer && caregiverListItems.length > 0) {
+  const listObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Khi container vào view, thêm class visible cho từng item với delay
+          caregiverListItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add("visible");
+            }, index * 100);
+          });
+          // Unobserve sau khi đã trigger để không trigger lại
+          listObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  listObserver.observe(caregiversListContainer);
+}
