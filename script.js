@@ -1,12 +1,20 @@
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links with offset
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
-      target.scrollIntoView({
+      const header = document.querySelector(".header");
+      const headerHeight = header ? header.offsetHeight : 100;
+      // Thêm offset để lùi lên một đoạn (chiều cao header + thêm 20px)
+      const offset = headerHeight + 20;
+
+      const targetPosition =
+        target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: targetPosition,
         behavior: "smooth",
-        block: "start",
       });
     }
   });
@@ -449,11 +457,13 @@ let lastScroll = 0;
 const header = document.querySelector(".header");
 
 window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset;
+  const currentScroll = window.pageYOffset || window.scrollY;
 
-  if (currentScroll > 100) {
+  if (currentScroll > 500) {
+    header.classList.add("scrolled");
     header.style.boxShadow = "0 5px 20px rgba(0, 0, 0, 0.1)";
   } else {
+    header.classList.remove("scrolled");
     header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
   }
 
