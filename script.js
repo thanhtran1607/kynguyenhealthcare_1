@@ -461,6 +461,7 @@ window.addEventListener("scroll", () => {
 
   if (currentScroll > 500) {
     header.classList.add("scrolled");
+
     header.style.boxShadow = "0 5px 20px rgba(0, 0, 0, 0.1)";
   } else {
     header.classList.remove("scrolled");
