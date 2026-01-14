@@ -3005,6 +3005,11 @@ section {
         min-height: 400px;
     }
 
+    .testimonial-icon {
+        top: 160px;
+        left: 50%;
+    }
+
     .hero-overlay {
         background-attachment: scroll;
         height: 100%;
