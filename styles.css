@@ -211,7 +211,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/z7428120400463_e9a5c58aeb35d6ccecf88fa7a2c35fec.jpg');
+    background-image: url('https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/3971fffb-c396-433c-ac88-dd38b62d7b68.jfif');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -219,6 +219,21 @@ body {
     width: 100%;
     height: 100vh;
     /* opacity: 0.8; */
+    z-index: 1;
+}
+
+.hero-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(0, 84, 168, 0.5) 0%,
+        rgba(0, 84, 168, 0.3) 30%,
+        rgba(0, 84, 168, 0.1) 50%,
+        transparent 100%);
     z-index: 1;
 }
 
@@ -1598,18 +1613,18 @@ section {
 }
 
 .contact-form .section-title {
-    color: #00695c;
+    color: #39bdb7;
     font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .contact-form .section-subtitle {
-    color: #00A859;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    color: #39bdb7;
+    font-size: 1rem;
+    line-height: 1.6;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 2rem;
 }
 
 .form {
@@ -1628,8 +1643,8 @@ section {
 .form-group label {
     display: block;
     margin-bottom: 0.6rem;
-    font-weight: 600;
-    color: #00695c;
+    font-weight: 500;
+    color: #39bdb7;
     font-size: 1rem;
 }
 
@@ -1637,11 +1652,11 @@ section {
     width: 100%;
     padding: 0.9rem 1rem;
     border: 1px solid #d0d0d0;
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 1rem;
     transition: border-color 0.3s;
     background: #ffffff;
-    color: #333;
+    color: #39bdb7;
 }
 
 .form-group input:focus {
@@ -1650,7 +1665,7 @@ section {
 }
 
 .form-group input::placeholder {
-    color: #999;
+    color: #39bdb7;
 }
 
 .btn-submit {
@@ -1658,17 +1673,17 @@ section {
     padding: 1rem 2rem;
     font-size: 1.1rem;
     margin-top: 0.5rem;
-    background: #00A859;
+    background: #39bdb7;
     color: #ffffff;
     border: none;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 30px;
+    font-weight: 700;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .btn-submit:hover {
-    background: #008a47;
+    background: #002244;
 }
 
 /* Footer */
@@ -1920,6 +1935,12 @@ section {
 
     .hero-overlay {
         background-attachment: scroll;
+        height: 100%;
+        min-height: 100%;
+        background-size: cover;
+        background-position: center center;
+        top: 0;
+        bottom: 0;
     }
 
     .hero-title {
@@ -2351,6 +2372,12 @@ section {
 
     .hero-overlay {
         background-attachment: scroll;
+        height: 100%;
+        min-height: 100%;
+        background-size: cover;
+        background-position: center center;
+        top: 0;
+        bottom: 0;
     }
 
     .hero-title {
@@ -2413,6 +2440,10 @@ section {
         min-height: 44px;
         min-width: 44px;
     }
+
+    /* .hero {
+        margin-top: 30px;
+    } */
 
     .header {
         width: 100%;
