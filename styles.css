@@ -713,6 +713,183 @@ section {
 }
 
 /* Caregivers Section */
+.caregivers-intro {
+    background: #ffffff;
+    padding: 4rem 0;
+    padding-top: 120px;
+}
+
+.caregivers-intro-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #006764;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.caregivers-intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.caregivers-intro-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333333;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.caregivers-intro-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Caregivers Testimonials */
+.caregivers-testimonials {
+    background: #ffffff;
+    padding: 4rem 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: #ffffff;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.testimonial-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.testimonial-content {
+    padding: 2rem;
+    padding-top: 3.5rem;
+    position: relative;
+}
+
+.testimonial-header {
+    display: flex;
+    /* flex-direction: column;
+    align-items: center; */
+    gap: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.testimonial-icon {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #00A89A 0%, #006764 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(0, 103, 100, 0.4);
+    position: absolute;
+    top: 270px;
+    left: 20%;
+    transform: translateX(-50%);
+    z-index: 10;
+    /* border: 4px solid #ffffff; */
+}
+
+.testimonial-icon svg,
+.testimonial-icon i {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.testimonial-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #006764;
+    margin: 0;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.testimonial-preview p {
+    color: #555555;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+}
+
+.testimonial-full {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.testimonial-full p {
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.testimonial-full p:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.btn-read-more,
+.btn-read-less {
+    background: #ffffff;
+    color: #006764;
+    border: 2px solid #006764;
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-read-more:hover,
+.btn-read-less:hover {
+    background: #006764;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 103, 100, 0.2);
+}
+
+.btn-read-more i,
+.btn-read-less i {
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+}
+
 .caregivers {
     background: #e8f5e9;
     padding: 3rem 0;
@@ -928,6 +1105,383 @@ section {
     transform: scale(1.02);
 }
 
+/* Training Process Section */
+.training-process-section {
+    background: #f8f9fa;
+    padding: 5rem 0;
+}
+
+.training-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.training-header {
+    grid-column: span 2;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-right: 1rem;
+}
+
+.training-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #006764;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.training-title .wecare-text {
+    color: #00A859;
+}
+
+.training-title .number-text {
+    color: #00A859;
+}
+
+.btn-training-apply {
+    background: #ffffff;
+    color: #006764;
+    border: 2px solid #006764;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.btn-training-apply:hover {
+    background: #006764;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 103, 100, 0.2);
+}
+
+.training-step-card {
+    background: #4DB3A4;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.training-step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(77, 179, 164, 0.3);
+}
+
+.training-step-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.training-step-icon i {
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.training-step-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.training-step-desc {
+    font-size: 1rem;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .training-grid-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .training-header {
+        grid-column: span 3;
+        padding-right: 0;
+    }
+
+    .training-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .training-process-section {
+        padding: 3rem 0;
+    }
+
+    .training-grid-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .training-header {
+        grid-column: span 1;
+        gap: 1.5rem;
+        padding-right: 0;
+    }
+
+    .training-title {
+        font-size: 1.6rem;
+    }
+
+    .training-step-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .training-step-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .training-step-icon i {
+        font-size: 1.8rem;
+    }
+
+    .training-step-title {
+        font-size: 1.3rem;
+    }
+
+    .training-step-desc {
+        font-size: 0.95rem;
+    }
+
+    .btn-training-apply {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Benefits Section */
+.benefits-section {
+    background: #ffffff;
+    padding: 5rem 0;
+}
+
+.benefits-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr;
+    /* gap: 3rem; */
+    align-items: start;
+}
+
+.benefits-header-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-right: 2.5rem;
+}
+
+.benefits-subtitle {
+    color: #DC1E35;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.benefits-title {
+    color: #006764;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+.benefits-nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.benefit-nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #006764;
+    background: #ffffff;
+    color: #006764;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.benefit-nav-btn:hover {
+    background: #006764;
+    color: #ffffff;
+}
+
+.benefits-slideshow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.benefits-slide-container {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s ease;
+    width: fit-content;
+}
+
+.benefit-card {
+    background: #ffffff;
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 300px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    background: #006764;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.benefit-icon i {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.benefit-card-title {
+    color: #006764;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.benefit-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.benefit-card-content p {
+    color: #333333;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .benefits-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .benefits-header-column {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .benefits-nav {
+        justify-content: center;
+    }
+
+    .benefits-title {
+        font-size: 1.8rem;
+    }
+    
+    .benefit-card {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .benefits-section {
+        padding: 3rem 0;
+    }
+
+    .benefits-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .benefits-header-column {
+        padding: 0 1rem;
+    }
+
+    .benefits-title {
+        font-size: 1.5rem;
+    }
+
+    .benefits-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .benefits-slideshow {
+        padding: 0 1rem;
+    }
+
+    .benefit-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .benefit-icon i {
+        font-size: 2rem;
+    }
+
+    .benefit-card-title {
+        font-size: 1.2rem;
+    }
+
+    .benefit-card-content p {
+        font-size: 0.95rem;
+    }
+
+    .benefit-card {
+        min-height: auto;
+        padding: 1.2rem;
+    }
+
+    .benefit-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
 /* Teaching Intro Section */
 .teaching-intro {
     background: #ffffff;
@@ -1047,12 +1601,63 @@ section {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
+
+    .testimonials-grid {
+        gap: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
     .teaching-cards {
         grid-template-columns: 1fr;
         gap: 1.2rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .testimonial-image {
+        height: 220px;
+    }
+
+    .testimonial-content {
+        padding: 1.5rem;
+        padding-top: 3rem;
+    }
+
+    .testimonial-icon {
+        width: 75px;
+        height: 75px;
+        top: -37.5px;
+        border-width: 3px;
+    }
+
+    .testimonial-icon svg {
+        width: 30px;
+        height: auto;
+    }
+
+    .testimonial-name {
+        font-size: 1.1rem;
+    }
+
+    .page-title-section {
+        padding: 6rem 0 2rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-description {
+        font-size: 1rem;
     }
 }
 
@@ -2297,6 +2902,15 @@ section {
         font-size: 1rem;
     }
 
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .testimonial-image {
+        height: 220px;
+    }
+
     /* Footer */
     .footer {
         padding: 2.5rem 0 1rem;
@@ -2413,6 +3027,24 @@ section {
     .reason-card,
     .testimonial-card {
         padding: 1.2rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .testimonial-image {
+        height: 200px;
+    }
+
+    .testimonial-content {
+        padding: 1.2rem;
+    }
+
+    .testimonial-name {
+        font-size: 1.1rem;
     }
 }
 

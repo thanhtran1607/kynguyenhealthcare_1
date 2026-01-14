@@ -360,6 +360,43 @@ subTabs.forEach((tab) => {
 
 // Expand/Collapse buttons for service details
 document.addEventListener("click", (e) => {
+  // Handle testimonial "Đọc tiếp" button
+  const readMoreBtn = e.target.closest(".btn-read-more");
+  if (readMoreBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetId = readMoreBtn.getAttribute("data-target");
+    const fullContent = document.getElementById(targetId);
+    const preview = readMoreBtn.closest(".testimonial-content")?.querySelector(".testimonial-preview");
+
+    if (fullContent && preview) {
+      preview.style.display = "none";
+      readMoreBtn.style.display = "none";
+      fullContent.style.display = "block";
+    }
+    return;
+  }
+
+  // Handle testimonial "Thu gọn" button
+  const readLessBtn = e.target.closest(".btn-read-less");
+  if (readLessBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetId = readLessBtn.getAttribute("data-target");
+    const fullContent = document.getElementById(targetId);
+    const preview = fullContent?.closest(".testimonial-content")?.querySelector(".testimonial-preview");
+    const readMoreBtn = fullContent?.closest(".testimonial-content")?.querySelector(".btn-read-more");
+
+    if (fullContent && preview && readMoreBtn) {
+      fullContent.style.display = "none";
+      preview.style.display = "block";
+      readMoreBtn.style.display = "flex";
+    }
+    return;
+  }
+
   // Handle "Xem thêm" button - check if clicked element is button or icon inside button
   const expandBtn = e.target.closest(".btn-expand");
   if (expandBtn) {
@@ -450,6 +487,12 @@ if (mobileMenuToggle && navMenu) {
 // Initialize animations
 document.addEventListener("DOMContentLoaded", () => {
   // Animations initialized
+  
+  // Initialize benefits slideshow
+  if (document.querySelector('.benefits-slide-container')) {
+    initBenefitsCarousel();
+    moveBenefitsSlide(0);
+  }
 });
 
 // Add scroll effect to header
@@ -571,4 +614,133 @@ if (caregiversListContainer && caregiverListItems.length > 0) {
   );
 
   listObserver.observe(caregiversListContainer);
+}
+
+// Benefits Slideshow - Infinite Carousel
+let currentBenefitSlide = 0;
+let benefitCardsCloned = false;
+
+function initBenefitsCarousel() {
+  const slideContainer = document.querySelector('.benefits-slide-container');
+  if (!slideContainer || benefitCardsCloned) return;
+  
+  const originalCards = Array.from(slideContainer.querySelectorAll('.benefit-card'));
+  
+  // Clone cards để tạo hiệu ứng vô hạn
+  // Clone 3 cards đầu và thêm vào cuối
+  originalCards.slice(0, 3).forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('cloned');
+    slideContainer.appendChild(clone);
+  });
+  
+  // Clone 3 cards cuối và thêm vào đầu
+  originalCards.slice(-3).reverse().forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('cloned');
+    slideContainer.insertBefore(clone, slideContainer.firstChild);
+  });
+  
+  benefitCardsCloned = true;
+  
+  // Set vị trí ban đầu (bắt đầu từ card thật đầu tiên, sau 3 card clone)
+  currentBenefitSlide = 3;
+}
+
+function moveBenefitsSlide(direction) {
+  const slideshow = document.querySelector('.benefits-slideshow');
+  const slideContainer = document.querySelector('.benefits-slide-container');
+  
+  if (!slideContainer || !slideshow) return;
+  
+  // Initialize carousel nếu chưa
+  if (!benefitCardsCloned) {
+    initBenefitsCarousel();
+  }
+  
+  const cards = document.querySelectorAll('.benefit-card');
+  const totalCards = cards.length;
+  const originalCardsCount = document.querySelectorAll('.benefit-card:not(.cloned)').length;
+  
+  if (totalCards === 0) return;
+  
+  // Tính toán số card hiển thị dựa trên responsive
+  const isMobile = window.innerWidth <= 768;
+  const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+  
+  let visibleCards = 3; // Desktop: hiển thị 3 cards
+  if (isMobile) {
+    visibleCards = 1; // Mobile: hiển thị 1 card
+  } else if (isTablet) {
+    visibleCards = 2; // Tablet: hiển thị 2 cards
+  }
+  
+  // Transform slide
+  const slideshowWidth = slideshow.offsetWidth;
+  const gap = 32; // 2rem gap in pixels
+  const totalGapWidth = (visibleCards - 1) * gap;
+  const cardWidth = (slideshowWidth - totalGapWidth) / visibleCards;
+  
+  // Update card widths dynamically
+  cards.forEach(card => {
+    card.style.flex = `0 0 ${cardWidth}px`;
+    card.style.width = `${cardWidth}px`;
+  });
+  
+  // Move slide
+  currentBenefitSlide += direction;
+  
+  // Animate
+  slideContainer.style.transition = 'transform 0.5s ease';
+  const offset = currentBenefitSlide * (cardWidth + gap);
+  slideContainer.style.transform = `translateX(-${offset}px)`;
+  
+  // Check if we need to reset position (infinite loop)
+  setTimeout(() => {
+    // Nếu đi quá cuối (vào vùng clone cuối)
+    if (currentBenefitSlide >= originalCardsCount + 3) {
+      slideContainer.style.transition = 'none';
+      currentBenefitSlide = 3;
+      const newOffset = currentBenefitSlide * (cardWidth + gap);
+      slideContainer.style.transform = `translateX(-${newOffset}px)`;
+    }
+    
+    // Nếu đi quá đầu (vào vùng clone đầu)
+    if (currentBenefitSlide < 3) {
+      slideContainer.style.transition = 'none';
+      currentBenefitSlide = originalCardsCount + 2;
+      const newOffset = currentBenefitSlide * (cardWidth + gap);
+      slideContainer.style.transform = `translateX(-${newOffset}px)`;
+    }
+  }, 500); // Sau khi animation kết thúc
+}
+
+// Update card widths on window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    // Reset về vị trí ban đầu của cards thật (sau 3 clone)
+    currentBenefitSlide = 3;
+    moveBenefitsSlide(0);
+  }, 250);
+});
+
+// Auto slide for benefits (optional)
+let benefitsAutoSlide = setInterval(() => {
+  moveBenefitsSlide(1);
+}, 5000);
+
+// Pause auto slide on hover
+const benefitsSection = document.querySelector('.benefits-section');
+if (benefitsSection) {
+  benefitsSection.addEventListener('mouseenter', () => {
+    clearInterval(benefitsAutoSlide);
+  });
+  
+  benefitsSection.addEventListener('mouseleave', () => {
+    benefitsAutoSlide = setInterval(() => {
+      moveBenefitsSlide(1);
+    }, 5000);
+  });
 }
