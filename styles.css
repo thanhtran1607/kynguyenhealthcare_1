@@ -211,7 +211,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/z7428120400463_e9a5c58aeb35d6ccecf88fa7a2c35fec.jpg');
+    background-image: url('https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/3971fffb-c396-433c-ac88-dd38b62d7b68.jfif');
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -439,8 +439,10 @@ section {
 .service-tab.active {
     color: #00A859;
     background: rgba(0, 168, 89, 0.1);
-    border-bottom-color: #00A859;
-    border-bottom-width: 6px;
+    /* border-bottom-color: #00A859;
+    border-bottom-width: 6px; */
+    border:solid 2px #00A859;
+    border-bottom: 8px solid #00A859;
     border-radius: 8px 8px 0 0;
     font-weight: 700;
 }
@@ -573,8 +575,9 @@ section {
 
 .sub-tab.active {
     color: #00A859;
+    border:solid 2px #00A859;
+    border-bottom: 4px solid #00A859;
     background: rgba(0, 168, 89, 0.1);
-    border-bottom-color: #00A859;
     border-radius: 8px 8px 0 0;
     font-weight: 700;
 }
