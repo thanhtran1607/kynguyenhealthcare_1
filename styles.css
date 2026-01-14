@@ -23,8 +23,8 @@ body {
     background: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
-    max-width: 1000px;
-    width: 1000px;
+    max-width: 900px;
+    width: 900px;
     border-radius: 50px;
     top: 5px;
     z-index: 1000;
@@ -204,6 +204,41 @@ body {
     color: #ffffff;
     overflow: hidden;
 }
+
+.elementor-shape {
+    direction: ltr;
+    left: 0;
+    line-height: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    bottom: -1px;
+}
+
+.elementor-shape-bottom {
+    z-index: 2;
+    pointer-events: none;
+    transform: rotate(180deg);
+}
+
+.elementor-shape-top {
+    z-index: 2;
+    pointer-events: none;
+    transform: rotate(0deg);
+}
+
+.elementor-shape-fill {
+    fill: #fff;
+    transform: rotateY(0deg);
+    transform-origin: center;
+}
+
+.elementor-shape-fill-2 {
+    fill: #f8f9fa ;
+    transform: rotateY(0deg);
+    transform-origin: center;
+}
+
 
 .hero-overlay {
     position: absolute;
@@ -3100,6 +3135,13 @@ section {
         min-width: 44px;
     }
 
+        
+    .contact-tabs-wrapper {
+        padding: 7rem 0;
+    }
+
+
+
     /* .hero {
         margin-top: 30px;
     } */
@@ -3191,7 +3233,630 @@ section {
         max-width: none;
         transform: translateY(-100px);
     }
+
+        
+    .contact-tabs-wrapper {
+        padding: 7rem 0;
+    }
+
+ 
     .notification.show {
         transform: translateY(0);
+    }
+}
+
+/* Contact Section with Tabs */
+.contact-section {
+    padding: 0;
+    background: #f8f9fa;
+    margin-bottom: 3rem;
+}
+
+.contact-tabs-wrapper {
+    position: relative;
+    background-image: url('https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/1730e6c5-a672-4528-9f2d-a750c72981b6.jfif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 3rem;
+    height: 350px;
+    padding-top: 200px;
+}
+
+.contact-tabs-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.contact-tabs-wrapper .container {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact-tab {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    padding: 1.5rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 300px;
+}
+
+.contact-tab::after {
+    content: '';
+    width: 60%;
+    height: 3px;
+    background: #008a47;
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.contact-tab:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.contact-tab:hover::after {
+    opacity: 1;
+}
+
+.contact-tab.active {
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.contact-tab.active::after {
+    opacity: 1;
+    background: #008a47;
+}
+
+.contact-content {
+    position: relative;
+}
+
+.contact-tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.contact-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* FAQ Styles */
+.faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.faq-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.btn-consultation {
+    background: #ffffff;
+    border: 2px solid #008a47;
+    color: #008a47;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-consultation:hover {
+    border-color: #008a47;
+    color: #008a47;
+}
+
+.faq-list {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: #ffffff;
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #008a47;
+}
+
+.faq-question-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-question-wrapper:hover {
+    background: #f8f9fa;
+}
+
+.faq-question {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.faq-item.active .faq-question {
+    color: #008a47;
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #666;
+    width: 24px;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+    color: #008a47;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s ease;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 2000px;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    opacity: 1;
+}
+
+.faq-answer ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.faq-answer li {
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+/* Consultation Form Styles */
+.consultation-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.consultation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.company-logo-section {
+    margin-bottom: 1rem;
+}
+
+.company-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.company-tagline {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+}
+
+.contact-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-info-section .contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.contact-info-section .contact-info-item i {
+    color: #008a47;
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    min-width: 20px;
+}
+
+.contact-info-text {
+    flex: 1;
+}
+
+.contact-info-text strong {
+    display: block;
+    color: #008a47;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info-text p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}
+
+.social-media {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s;
+    font-size: 1.2rem;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+.social-icon.zalo {
+    background: #0068FF;
+    color: #ffffff;
+}
+
+.social-icon.facebook {
+    background: #1877F2;
+    color: #ffffff;
+}
+
+.social-icon.instagram {
+    background: #E4405F;
+    color: #ffffff;
+}
+
+.map-container {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+    display: block;
+}
+
+.consultation-form-section {
+    background: #e8f5e9;
+    padding: 2.5rem;
+    border-radius: 12px;
+}
+
+.consultation-form-header {
+    margin-bottom: 2rem;
+}
+
+.consultation-form-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #008a47;
+    margin-bottom: 0.5rem;
+}
+
+.consultation-form-subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+}
+
+.consultation-form {
+    background: transparent;
+    padding: 0;
+}
+
+.consultation-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.consultation-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.consultation-form input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s;
+    font-family: inherit;
+    background: #ffffff;
+}
+
+.consultation-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #008a47;
+}
+
+.consultation-form .btn-submit {
+    width: 100%;
+    background: #008a47;
+    color: #ffffff;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.consultation-form .btn-submit:hover {
+    background: #006d3a;
+}
+
+/* Recruitment Styles */
+.recruitment-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.recruitment-intro {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.recruitment-form-wrapper {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2.5rem;
+}
+
+.recruitment-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.recruitment-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.recruitment-form input,
+.recruitment-form select,
+.recruitment-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.recruitment-form input:focus,
+.recruitment-form select:focus,
+.recruitment-form textarea:focus {
+    outline: none;
+    border-color: #008a47;
+}
+
+.recruitment-form textarea {
+    resize: vertical;
+}
+
+.recruitment-benefits {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.recruitment-benefits h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.recruitment-benefits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recruitment-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.recruitment-benefits li i {
+    color: #008a47;
+    margin-top: 0.2rem;
+}
+
+.btn-submit {
+    background: #008a47;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background: #006a35;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 0;
+    }
+
+    .contact-tabs-wrapper {
+        padding: 2.5rem 0;
+        margin-bottom: 2rem;
+    }
+
+        
+    .contact-tabs-wrapper {
+        padding: 7rem 0;
+    }
+
+
+
+    .contact-tabs {
+        gap: 0.5rem;
+    }
+
+    .contact-tab {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .contact-title {
+        font-size: 2rem;
+    }
+
+    .faq-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .faq-title {
+        font-size: 1.5rem;
+    }
+
+    .btn-consultation {
+        width: 100%;
+    }
+
+    .faq-question-wrapper {
+        padding: 1rem;
+    }
+
+    .faq-question {
+        font-size: 0.95rem;
+    }
+
+    .consultation-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .consultation-form-section {
+        padding: 1.5rem;
+    }
+
+    .consultation-form,
+    .recruitment-form-wrapper,
+    .recruitment-benefits {
+        padding: 1.5rem;
     }
 }

@@ -836,3 +836,164 @@ if (benefitsSection) {
     }, 5000);
   });
 }
+
+// Contact tabs functionality
+const contactTabs = document.querySelectorAll(".contact-tab");
+const contactTabContents = document.querySelectorAll(".contact-tab-content");
+
+// Function to switch to a specific tab
+function switchToTab(tabName) {
+  const tab = document.querySelector(`[data-contact-tab="${tabName}"]`);
+  if (tab) {
+    tab.click();
+  }
+}
+
+if (contactTabs.length > 0) {
+  contactTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const targetTab = tab.getAttribute("data-contact-tab");
+
+      // Remove active class from all tabs
+      contactTabs.forEach((t) => t.classList.remove("active"));
+      // Add active class to clicked tab
+      tab.classList.add("active");
+
+      // Hide all tab contents
+      contactTabContents.forEach((content) => {
+        content.classList.remove("active");
+      });
+
+      // Show target tab content
+      const targetContent = document.getElementById(targetTab);
+      if (targetContent) {
+        targetContent.classList.add("active");
+      }
+    });
+  });
+
+  // Check for hash on page load and switch to corresponding tab
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1); // Remove the #
+    if (hash === "recruitment" || hash === "consultation" || hash === "faq") {
+      switchToTab(hash);
+    }
+  }
+}
+
+// FAQ Accordion functionality
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item) => {
+  const questionWrapper = item.querySelector(".faq-question-wrapper");
+  const icon = item.querySelector(".faq-icon");
+
+  if (questionWrapper) {
+    questionWrapper.addEventListener("click", () => {
+      const isActive = item.classList.contains("active");
+
+      // Use requestAnimationFrame for smooth animation
+      requestAnimationFrame(() => {
+        // Close all items
+        faqItems.forEach((faqItem) => {
+          if (faqItem !== item) {
+            faqItem.classList.remove("active");
+            const faqIcon = faqItem.querySelector(".faq-icon");
+            if (faqIcon) {
+              faqIcon.textContent = "+";
+            }
+          }
+        });
+
+        // Toggle current item with slight delay for smoother transition
+        setTimeout(() => {
+          if (!isActive) {
+            item.classList.add("active");
+            if (icon) {
+              icon.textContent = "−";
+            }
+          } else {
+            item.classList.remove("active");
+            if (icon) {
+              icon.textContent = "+";
+            }
+          }
+        }, 10);
+      });
+    });
+  }
+});
+
+// Button "Liên hệ tư vấn" functionality
+const btnConsultation = document.getElementById("btnConsultation");
+if (btnConsultation) {
+  btnConsultation.addEventListener("click", () => {
+    const consultationTab = document.querySelector('[data-contact-tab="consultation"]');
+    if (consultationTab) {
+      consultationTab.click();
+    }
+  });
+}
+
+// Consultation form submission (for lien-he.html)
+const consultationForm = document.querySelector(".consultation-form");
+if (consultationForm) {
+  consultationForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Lấy các trường input
+    const nameInput = consultationForm.querySelector("#consult-name");
+    const phoneInput = consultationForm.querySelector("#consult-phone");
+    const emailInput = consultationForm.querySelector("#consult-email");
+
+    // Kiểm tra validation
+    let isValid = true;
+    let errorMessage = "";
+
+    // Kiểm tra Họ và Tên (required)
+    if (!nameInput.value.trim()) {
+      isValid = false;
+      errorMessage = "Vui lòng nhập Họ và Tên";
+      nameInput.focus();
+    }
+    // Kiểm tra Số điện thoại (required)
+    else if (!phoneInput.value.trim()) {
+      isValid = false;
+      errorMessage = "Vui lòng nhập Số điện thoại";
+      phoneInput.focus();
+    }
+    // Kiểm tra định dạng số điện thoại
+    else if (
+      phoneInput.value.trim() &&
+      !/^[0-9]{10,11}$/.test(phoneInput.value.replace(/\s/g, ""))
+    ) {
+      isValid = false;
+      errorMessage = "Số điện thoại không hợp lệ. Vui lòng nhập 10-11 chữ số";
+      phoneInput.focus();
+    }
+    // Kiểm tra định dạng email nếu có nhập
+    else if (
+      emailInput.value.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
+    ) {
+      isValid = false;
+      errorMessage = "Email không hợp lệ";
+      emailInput.focus();
+    }
+
+    if (!isValid) {
+      // Hiển thị thông báo lỗi
+      showNotification(errorMessage, "error");
+      return;
+    }
+
+    // Nếu form hợp lệ, hiển thị thông báo thành công
+    showNotification(
+      "Cảm ơn bạn đã liên hệ! Chúng tôi đã ghi nhận thông tin của bạn và sẽ phản hồi trong vòng 24h.",
+      "success"
+    );
+
+    // Reset form
+    consultationForm.reset();
+  });
+}
