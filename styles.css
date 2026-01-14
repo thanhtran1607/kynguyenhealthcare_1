@@ -211,7 +211,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/image/3971fffb-c396-433c-ac88-dd38b62d7b68.jfif');
+    background-image: url('https://raw.githubusercontent.com/thanhtran1607/kynguyenhealthcare_1/refs/heads/main/image/z7428120400463_e9a5c58aeb35d6ccecf88fa7a2c35fec.jpg');
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -396,7 +396,7 @@ section {
     flex-wrap: nowrap;
     gap: 0.3rem;
     margin-bottom: 3rem;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 3px solid #e0e0e0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
@@ -425,8 +425,8 @@ section {
     color: #666;
     cursor: pointer;
     transition: all 0.3s;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
+    border-bottom: 4px solid transparent;
+    margin-bottom: -3px;
     white-space: nowrap;
     flex-shrink: 0;
     min-width: fit-content;
@@ -440,6 +440,9 @@ section {
     color: #00A859;
     background: rgba(0, 168, 89, 0.1);
     border-bottom-color: #00A859;
+    border-bottom-width: 6px;
+    border-radius: 8px 8px 0 0;
+    font-weight: 700;
 }
 
 .services-content {
@@ -546,7 +549,7 @@ section {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 3px solid #e0e0e0;
     flex-wrap: wrap;
 }
 
@@ -559,8 +562,8 @@ section {
     color: #666;
     cursor: pointer;
     transition: all 0.3s;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
+    border-bottom: 4px solid transparent;
+    margin-bottom: -3px;
     white-space: nowrap;
 }
 
@@ -572,6 +575,8 @@ section {
     color: #00A859;
     background: rgba(0, 168, 89, 0.1);
     border-bottom-color: #00A859;
+    border-radius: 8px 8px 0 0;
+    font-weight: 700;
 }
 
 .sub-content {
