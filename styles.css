@@ -6,7 +6,7 @@
 
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
@@ -96,7 +96,7 @@ body {
 }
 
 .logo h2 {
-    color: #00A859;
+    color: #009789;
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -127,7 +127,7 @@ body {
 .nav-menu a {
     text-decoration: none;
     color: #333;
-    font-weight: 500;
+    font-weight: 400;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     display: inline-block;
@@ -139,11 +139,11 @@ body {
 }
 
 .nav-menu a:hover {
-    color: #00A859;
+    color: #009789;
 }
 
 .nav-menu a.active {
-    color: #00A859;
+    color: #009789;
     font-weight: 600;
     position: relative;
 }
@@ -155,7 +155,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: #00A859;
+    background: #009789;
 }
 
 .nav-actions {
@@ -165,7 +165,7 @@ body {
 }
 
 .btn-primary {
-    background: #00A859;
+    background: #009789;
     color: #ffffff;
     border: none;
     padding: 0.7rem 1.5rem;
@@ -260,7 +260,7 @@ body {
 
 .btn-hero {
     background: #ffffff;
-    color: #00A859;
+    color: #009789;
     border: none;
     padding: 1rem 2.5rem;
     border-radius: 50px;
@@ -307,7 +307,7 @@ section {
 }
 
 .section-title span {
-    color: #00A859;
+    color: #009789;
 }
 
 .section-subtitle {
@@ -352,8 +352,8 @@ section {
 
 .btn-secondary {
     background: transparent;
-    color: #00A859;
-    border: 2px solid #00A859;
+    color: #009789;
+    border: 2px solid #009789;
     padding: 0.7rem 2rem;
     border-radius: 5px;
     cursor: pointer;
@@ -363,7 +363,7 @@ section {
 }
 
 .btn-secondary:hover {
-    background: #00A859;
+    background: #009789;
     color: #ffffff;
 }
 
@@ -451,16 +451,16 @@ section {
 }
 
 .service-tab:hover {
-    color: #00A859;
+    color: #009789;
 }
 
 .service-tab.active {
-    color: #00A859;
+    color: #009789;
     background: rgba(0, 168, 89, 0.1);
-    /* border-bottom-color: #00A859;
+    /* border-bottom-color: #009789;
     border-bottom-width: 6px; */
-    border:solid 2px #00A859;
-    border-bottom: 8px solid #00A859;
+    border:solid 2px #009789;
+    border-bottom: 8px solid #009789;
     border-radius: 8px 8px 0 0;
     font-weight: 700;
 }
@@ -512,7 +512,7 @@ section {
     content: '•';
     position: absolute;
     left: 0;
-    color: #00A859;
+    color: #009789;
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -531,7 +531,7 @@ section {
 }
 
 .btn-link {
-    background: #00A859;
+    background: #009789;
     color: #ffffff;
     border: none;
     padding: 0.8rem 2rem;
@@ -588,13 +588,13 @@ section {
 }
 
 .sub-tab:hover {
-    color: #00A859;
+    color: #009789;
 }
 
 .sub-tab.active {
-    color: #00A859;
-    border:solid 2px #00A859;
-    border-bottom: 4px solid #00A859;
+    color: #009789;
+    border:solid 2px #009789;
+    border-bottom: 4px solid #009789;
     background: rgba(0, 168, 89, 0.1);
     border-radius: 8px 8px 0 0;
     font-weight: 700;
@@ -646,7 +646,7 @@ section {
 }
 
 .service-details h4 {
-    color: #00A859;
+    color: #009789;
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -657,7 +657,7 @@ section {
 }
 
 .service-scope h4 {
-    color: #00A859;
+    color: #009789;
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -665,7 +665,7 @@ section {
 
 .btn-expand,
 .btn-collapse {
-    background: #00A859 !important;
+    background: #009789 !important;
     color: #ffffff !important;
     border: none !important;
     padding: 0.8rem 2rem !important;
@@ -720,7 +720,7 @@ section {
 }
 
 .caregivers-intro-title {
-    font-size: 2.5rem;
+    font-size: 36px;
     font-weight: 700;
     color: #006764;
     margin-bottom: 2rem;
@@ -730,10 +730,11 @@ section {
 .caregivers-intro-content {
     max-width: 900px;
     margin: 0 auto;
+    
 }
 
 .caregivers-intro-content p {
-    font-size: 1.1rem;
+    font-size: 16px;
     line-height: 1.8;
     color: #333333;
     margin-bottom: 1.5rem;
@@ -963,7 +964,7 @@ section {
 
 .caregivers-brand {
     font-size: 1.3rem;
-    color: #00A859;
+    color: #009789;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -1024,7 +1025,7 @@ section {
 }
 
 .caregiver-list-item i {
-    color: #00A859;
+    color: #009789;
     font-size: 1.1rem;
     margin-top: 0.15rem;
     flex-shrink: 0;
@@ -1063,7 +1064,7 @@ section {
 .btn-caregiver {
     background: #e8f5e9;
     color: #00695c;
-    border: 2px solid #00A859;
+    border: 2px solid #009789;
     padding: 0.8rem 2.5rem;
     border-radius: 50px;
     font-size: 0.95rem;
@@ -1077,9 +1078,9 @@ section {
 }
 
 .btn-caregiver:hover {
-    background: #00A859;
+    background: #009789;
     color: #ffffff;
-    border-color: #00A859;
+    border-color: #009789;
     transform: translateY(-3px);
     box-shadow: 0 6px 16px rgba(0, 168, 89, 0.4);
 }
@@ -1136,11 +1137,11 @@ section {
 }
 
 .training-title .wecare-text {
-    color: #00A859;
+    color: #009789;
 }
 
 .training-title .number-text {
-    color: #00A859;
+    color: #009789;
 }
 
 .btn-training-apply {
@@ -1525,7 +1526,7 @@ section {
 .teaching-intro-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #00A859;
+    color: #009789;
     margin-bottom: 1rem;
     line-height: 1.3;
 }
@@ -1594,11 +1595,11 @@ section {
 .teaching-section-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #00A859;
+    color: #009789;
     margin-bottom: 2.5rem;
     text-align: center;
     padding-bottom: 1rem;
-    border-bottom: 3px solid #00A859;
+    border-bottom: 3px solid #009789;
 }
 
 .teaching-cards {
@@ -1699,7 +1700,7 @@ section {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #00A859 0%, #008a47 100%);
+    background: linear-gradient(90deg, #009789 0%, #008a47 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -1735,12 +1736,12 @@ section {
 }
 
 .teaching-content-list li:hover {
-    color: #00A859;
+    color: #009789;
 }
 
 .teaching-content-list li:before {
     content: "✓";
-    color: #00A859;
+    color: #009789;
     font-weight: 700;
     position: absolute;
     left: 0;
@@ -1771,12 +1772,12 @@ section {
 }
 
 .internship-item strong {
-    color: #00A859;
+    color: #009789;
     font-size: 1.4rem;
 }
 
 .internship-item span {
-    color: #00A859;
+    color: #009789;
     font-weight: 600;
     font-size: 1.4rem;
 }
@@ -1805,7 +1806,7 @@ section {
 .reason-card {
     text-align: center;
     padding: 1rem 1rem;
-    background: #00A859;
+    background: #009789;
     border-radius: 15px;
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
@@ -1934,7 +1935,7 @@ section {
 
 .partner-tab.active,
 .partner-tab:hover {
-    background: #00A859;
+    background: #009789;
     color: #ffffff;
 }
 
@@ -2006,13 +2007,13 @@ section {
 }
 
 .booking-steps .section-title .brand-name {
-    color: #00A859;
+    color: #009789;
     display: inline-block;
 }
 
 .steps-container {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
@@ -2080,7 +2081,7 @@ section {
 
 .step-icon > i:first-of-type {
     font-size: 2.5rem;
-    color: #00A859;
+    color: #009789;
     position: relative;
     z-index: 2;
 }
@@ -2158,7 +2159,7 @@ section {
 }
 
 .icon-arrows .arrow-teal {
-    border-color: #00A859;
+    border-color: #009789;
     animation: rotate 3s linear infinite reverse;
     width: 70px;
     height: 70px;
@@ -2179,7 +2180,7 @@ section {
     right: -8px;
     width: 28px;
     height: 28px;
-    background: #00A859;
+    background: #009789;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2207,7 +2208,7 @@ section {
 }
 
 .step-arrow {
-    color: #00A859;
+    color: #009789;
     font-size: 5rem;
     flex-shrink: 0;
     padding: 0 1.5rem;
@@ -2287,7 +2288,7 @@ section {
 
 .form-group input:focus {
     outline: none;
-    border-color: #00A859;
+    border-color: #009789;
 }
 
 .form-group input::placeholder {
@@ -2367,7 +2368,7 @@ section {
 }
 
 .social-links a:hover {
-    background: #00A859;
+    background: #009789;
 }
 
 .footer-bottom {
@@ -2401,7 +2402,7 @@ section {
     align-items: center;
     gap: 0.5rem;
     padding: 1rem 1.5rem;
-    background: #00A859;
+    background: #009789;
     color: #ffffff;
     text-decoration: none;
     border-radius: 50px;
@@ -3161,11 +3162,11 @@ section {
 }
 
 .notification-success {
-    border-left: 4px solid #00A859;
+    border-left: 4px solid #009789;
 }
 
 .notification-success .notification-content i {
-    color: #00A859;
+    color: #009789;
 }
 
 .notification-error {

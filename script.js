@@ -1,3 +1,47 @@
+// Function to update active navigation link
+function updateActiveNavLink() {
+  const navLinks = document.querySelectorAll(".nav-menu a");
+  const sections = document.querySelectorAll("section[id]");
+  const header = document.querySelector(".header");
+  const headerHeight = header ? header.offsetHeight : 100;
+  const scrollPosition = window.pageYOffset + headerHeight + 100;
+
+  // Remove active class from all links
+  navLinks.forEach((link) => link.classList.remove("active"));
+
+  // Find the current section in view
+  let currentSection = "";
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    if (
+      scrollPosition >= sectionTop &&
+      scrollPosition < sectionTop + sectionHeight
+    ) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+
+  // Add active class to corresponding link
+  if (currentSection) {
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      if (href === `#${currentSection}` || href.endsWith(`#${currentSection}`)) {
+        link.classList.add("active");
+      }
+    });
+  } else {
+    // If at top of page, activate home link
+    if (window.pageYOffset < 100) {
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href") === "#home") {
+          link.classList.add("active");
+        }
+      });
+    }
+  }
+}
+
 // Smooth scrolling for navigation links with offset
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
@@ -16,8 +60,56 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         top: targetPosition,
         behavior: "smooth",
       });
+
+      // Update active link after scroll
+      setTimeout(() => {
+        updateActiveNavLink();
+      }, 500);
     }
   });
+});
+
+// Update active nav link on scroll (only for index.html)
+// This will be set up in DOMContentLoaded
+
+// Update active nav link on page load
+document.addEventListener("DOMContentLoaded", () => {
+  // Set active link for external pages (like caregivers.html, teaching.html)
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll(".nav-menu a");
+  
+  // Remove all active classes first
+  navLinks.forEach((link) => link.classList.remove("active"));
+  
+  // Check if we're on an external page
+  if (currentPage !== 'index.html' && currentPage !== '') {
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      // Check if link points to current page
+      if (href === currentPage || href.includes(currentPage)) {
+        link.classList.add("active");
+      }
+    });
+  } else {
+    // For index.html, use scroll-based active link
+    // Set up scroll listener for index.html
+    window.addEventListener("scroll", () => {
+      updateActiveNavLink();
+    });
+    
+    updateActiveNavLink();
+    
+    // Check if URL has hash and update active link
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      navLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+        if (href === hash || href.endsWith(hash)) {
+          link.classList.add("active");
+        }
+      });
+    }
+  }
 });
 
 // Form submission
