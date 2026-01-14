@@ -997,3 +997,103 @@ if (consultationForm) {
     consultationForm.reset();
   });
 }
+
+// Recruitment form submission (for lien-he.html)
+const recruitmentForm = document.querySelector(".recruitment-form");
+if (recruitmentForm) {
+  recruitmentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Lấy các trường input
+    const nameInput = recruitmentForm.querySelector("#recruit-name");
+    const phoneInput = recruitmentForm.querySelector("#recruit-phone");
+    const emailInput = recruitmentForm.querySelector("#recruit-email");
+    const positionInput = recruitmentForm.querySelector("#position");
+    const cvInput = recruitmentForm.querySelector("#recruit-cv");
+
+    // Kiểm tra validation
+    let isValid = true;
+    let errorMessage = "";
+
+    // Kiểm tra Họ và Tên (required)
+    if (!nameInput.value.trim()) {
+      isValid = false;
+      errorMessage = "Vui lòng nhập Họ và Tên";
+      nameInput.focus();
+    }
+    // Kiểm tra Số điện thoại (required)
+    else if (!phoneInput.value.trim()) {
+      isValid = false;
+      errorMessage = "Vui lòng nhập Số điện thoại";
+      phoneInput.focus();
+    }
+    // Kiểm tra định dạng số điện thoại
+    else if (
+      phoneInput.value.trim() &&
+      !/^[0-9]{10,11}$/.test(phoneInput.value.replace(/\s/g, ""))
+    ) {
+      isValid = false;
+      errorMessage = "Số điện thoại không hợp lệ. Vui lòng nhập 10-11 chữ số";
+      phoneInput.focus();
+    }
+    // Kiểm tra Email (required)
+    else if (!emailInput.value.trim()) {
+      isValid = false;
+      errorMessage = "Vui lòng nhập Email";
+      emailInput.focus();
+    }
+    // Kiểm tra định dạng email
+    else if (
+      emailInput.value.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
+    ) {
+      isValid = false;
+      errorMessage = "Email không hợp lệ";
+      emailInput.focus();
+    }
+    // Kiểm tra Vị trí ứng tuyển (required)
+    else if (!positionInput.value) {
+      isValid = false;
+      errorMessage = "Vui lòng chọn Vị trí ứng tuyển";
+      positionInput.focus();
+    }
+    // Kiểm tra CV file (required)
+    else if (!cvInput.files || cvInput.files.length === 0) {
+      isValid = false;
+      errorMessage = "Vui lòng tải lên CV";
+      cvInput.focus();
+    }
+    // Kiểm tra kích thước file (tối đa 5MB)
+    else if (cvInput.files[0].size > 5 * 1024 * 1024) {
+      isValid = false;
+      errorMessage = "Kích thước file CV không được vượt quá 5MB";
+      cvInput.focus();
+    }
+    // Kiểm tra định dạng file
+    else {
+      const allowedTypes = [".pdf", ".doc", ".docx"];
+      const fileName = cvInput.files[0].name.toLowerCase();
+      const isValidType = allowedTypes.some((type) => fileName.endsWith(type));
+      if (!isValidType) {
+        isValid = false;
+        errorMessage = "Chỉ chấp nhận file PDF, DOC, DOCX";
+        cvInput.focus();
+      }
+    }
+
+    if (!isValid) {
+      // Hiển thị thông báo lỗi
+      showNotification(errorMessage, "error");
+      return;
+    }
+
+    // Nếu form hợp lệ, hiển thị thông báo thành công
+    showNotification(
+      "Cảm ơn bạn đã nộp hồ sơ! Chúng tôi đã nhận được thông tin của bạn và sẽ liên hệ trong thời gian sớm nhất.",
+      "success"
+    );
+
+    // Reset form
+    recruitmentForm.reset();
+  });
+}
