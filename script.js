@@ -112,34 +112,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Form submission
+// Form submission (index.html - đặt lịch tư vấn)
 const form = document.querySelector(".form");
 if (form) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Lấy các trường input
     const nameInput = form.querySelector("#name");
     const phoneInput = form.querySelector("#phone");
     const emailInput = form.querySelector("#email");
 
-    // Kiểm tra validation
     let isValid = true;
     let errorMessage = "";
 
-    // Kiểm tra Họ và Tên (required)
     if (!nameInput.value.trim()) {
       isValid = false;
       errorMessage = "Vui lòng nhập Họ và Tên";
       nameInput.focus();
     }
-    // Kiểm tra Số điện thoại (required)
     else if (!phoneInput.value.trim()) {
       isValid = false;
       errorMessage = "Vui lòng nhập Số điện thoại";
       phoneInput.focus();
     }
-    // Kiểm tra định dạng số điện thoại
     else if (
       phoneInput.value.trim() &&
       !/^[0-9]{10,11}$/.test(phoneInput.value.replace(/\s/g, ""))
@@ -148,7 +143,6 @@ if (form) {
       errorMessage = "Số điện thoại không hợp lệ. Vui lòng nhập 10-11 chữ số";
       phoneInput.focus();
     }
-    // Kiểm tra định dạng email nếu có nhập
     else if (
       emailInput.value.trim() &&
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
@@ -159,19 +153,44 @@ if (form) {
     }
 
     if (!isValid) {
-      // Hiển thị thông báo lỗi
       showNotification(errorMessage, "error");
       return;
     }
 
-    // Nếu form hợp lệ, hiển thị thông báo thành công
-    showNotification(
-      "Cảm ơn bạn đã liên hệ! Chúng tôi đã ghi nhận thông tin của bạn và sẽ phản hồi trong vòng 24h.",
-      "success"
-    );
+    const submitBtn = form.querySelector(".btn-submit");
+    const originalText = submitBtn ? submitBtn.textContent : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Đang gửi...";
+    }
 
-    // Reset form
-    form.reset();
+    try {
+      const res = await fetch("https://admin.kynguyenhealthcare.com/api/consultation-bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: nameInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          email: emailInput.value.trim() || undefined,
+        }),
+      });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `Lỗi ${res.status}`);
+      }
+      showNotification(
+        "Cảm ơn bạn đã liên hệ! Chúng tôi đã ghi nhận thông tin của bạn và sẽ phản hồi trong vòng 24h.",
+        "success"
+      );
+      form.reset();
+    } catch (err) {
+      showNotification(err.message || "Gửi thông tin thất bại. Vui lòng thử lại.", "error");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    }
   });
 }
 
@@ -878,6 +897,14 @@ if (contactTabs.length > 0) {
     if (hash === "recruitment" || hash === "consultation" || hash === "faq") {
       switchToTab(hash);
     }
+  } else {
+    // Check for query param to auto-open recruitment (e.g. ?tab=recruitment hoặc ?tuyendung=1)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("tab") === "recruitment" || params.get("tuyendung") === "1" || params.get("tuyendung") === "true") {
+      switchToTab("recruitment");
+    } else if (params.get("tab") === "consultation" || params.get("tab") === "faq") {
+      switchToTab(params.get("tab"));
+    }
   }
 }
 
@@ -935,34 +962,29 @@ if (btnConsultation) {
   });
 }
 
-// Consultation form submission (for lien-he.html)
+// Consultation form submission (for lien-he.html - đặt lịch tư vấn)
 const consultationForm = document.querySelector(".consultation-form");
 if (consultationForm) {
-  consultationForm.addEventListener("submit", (e) => {
+  consultationForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Lấy các trường input
     const nameInput = consultationForm.querySelector("#consult-name");
     const phoneInput = consultationForm.querySelector("#consult-phone");
     const emailInput = consultationForm.querySelector("#consult-email");
 
-    // Kiểm tra validation
     let isValid = true;
     let errorMessage = "";
 
-    // Kiểm tra Họ và Tên (required)
     if (!nameInput.value.trim()) {
       isValid = false;
       errorMessage = "Vui lòng nhập Họ và Tên";
       nameInput.focus();
     }
-    // Kiểm tra Số điện thoại (required)
     else if (!phoneInput.value.trim()) {
       isValid = false;
       errorMessage = "Vui lòng nhập Số điện thoại";
       phoneInput.focus();
     }
-    // Kiểm tra định dạng số điện thoại
     else if (
       phoneInput.value.trim() &&
       !/^[0-9]{10,11}$/.test(phoneInput.value.replace(/\s/g, ""))
@@ -971,7 +993,6 @@ if (consultationForm) {
       errorMessage = "Số điện thoại không hợp lệ. Vui lòng nhập 10-11 chữ số";
       phoneInput.focus();
     }
-    // Kiểm tra định dạng email nếu có nhập
     else if (
       emailInput.value.trim() &&
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
@@ -982,52 +1003,100 @@ if (consultationForm) {
     }
 
     if (!isValid) {
-      // Hiển thị thông báo lỗi
       showNotification(errorMessage, "error");
       return;
     }
 
-    // Nếu form hợp lệ, hiển thị thông báo thành công
-    showNotification(
-      "Cảm ơn bạn đã liên hệ! Chúng tôi đã ghi nhận thông tin của bạn và sẽ phản hồi trong vòng 24h.",
-      "success"
-    );
+    const submitBtn = consultationForm.querySelector(".btn-submit");
+    const originalText = submitBtn ? submitBtn.textContent : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Đang gửi...";
+    }
 
-    // Reset form
-    consultationForm.reset();
+    try {
+      const res = await fetch("https://admin.kynguyenhealthcare.com/api/consultation-bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: nameInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          email: emailInput.value.trim() || undefined,
+        }),
+      });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `Lỗi ${res.status}`);
+      }
+      showNotification(
+        "Cảm ơn bạn đã liên hệ! Chúng tôi đã ghi nhận thông tin của bạn và sẽ phản hồi trong vòng 24h.",
+        "success"
+      );
+      consultationForm.reset();
+    } catch (err) {
+      showNotification(err.message || "Gửi thông tin thất bại. Vui lòng thử lại.", "error");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    }
   });
+}
+
+// Load job positions from API (for lien-he.html recruitment form)
+const positionSelect = document.querySelector("#position");
+if (positionSelect) {
+  fetch("https://admin.kynguyenhealthcare.com/api/job-positions/active")
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data)) {
+        data.forEach((item) => {
+          const option = document.createElement("option");
+          option.value = item.id;
+          option.textContent = item.name;
+          positionSelect.appendChild(option);
+        });
+      }
+    })
+    .catch(() => {
+      // Giữ option mặc định "Chọn vị trí" nếu API lỗi
+    });
 }
 
 // Recruitment form submission (for lien-he.html)
 const recruitmentForm = document.querySelector(".recruitment-form");
 if (recruitmentForm) {
-  recruitmentForm.addEventListener("submit", (e) => {
+  recruitmentForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // Lấy các trường input
-    const nameInput = recruitmentForm.querySelector("#recruit-name");
+    const firstNameInput = recruitmentForm.querySelector("#recruit-firstName");
+    const lastNameInput = recruitmentForm.querySelector("#recruit-lastName");
     const phoneInput = recruitmentForm.querySelector("#recruit-phone");
     const emailInput = recruitmentForm.querySelector("#recruit-email");
     const positionInput = recruitmentForm.querySelector("#position");
+    const experienceInput = recruitmentForm.querySelector("#experience");
     const cvInput = recruitmentForm.querySelector("#recruit-cv");
 
     // Kiểm tra validation
     let isValid = true;
     let errorMessage = "";
 
-    // Kiểm tra Họ và Tên (required)
-    if (!nameInput.value.trim()) {
+    if (!lastNameInput.value.trim()) {
       isValid = false;
-      errorMessage = "Vui lòng nhập Họ và Tên";
-      nameInput.focus();
+      errorMessage = "Vui lòng nhập Họ";
+      lastNameInput.focus();
+    } else if (!firstNameInput.value.trim()) {
+      isValid = false;
+      errorMessage = "Vui lòng nhập Tên";
+      firstNameInput.focus();
     }
-    // Kiểm tra Số điện thoại (required)
     else if (!phoneInput.value.trim()) {
       isValid = false;
       errorMessage = "Vui lòng nhập Số điện thoại";
       phoneInput.focus();
     }
-    // Kiểm tra định dạng số điện thoại
     else if (
       phoneInput.value.trim() &&
       !/^[0-9]{10,11}$/.test(phoneInput.value.replace(/\s/g, ""))
@@ -1036,13 +1105,11 @@ if (recruitmentForm) {
       errorMessage = "Số điện thoại không hợp lệ. Vui lòng nhập 10-11 chữ số";
       phoneInput.focus();
     }
-    // Kiểm tra Email (required)
     else if (!emailInput.value.trim()) {
       isValid = false;
       errorMessage = "Vui lòng nhập Email";
       emailInput.focus();
     }
-    // Kiểm tra định dạng email
     else if (
       emailInput.value.trim() &&
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
@@ -1051,25 +1118,21 @@ if (recruitmentForm) {
       errorMessage = "Email không hợp lệ";
       emailInput.focus();
     }
-    // Kiểm tra Vị trí ứng tuyển (required)
     else if (!positionInput.value) {
       isValid = false;
       errorMessage = "Vui lòng chọn Vị trí ứng tuyển";
       positionInput.focus();
     }
-    // Kiểm tra CV file (required)
     else if (!cvInput.files || cvInput.files.length === 0) {
       isValid = false;
       errorMessage = "Vui lòng tải lên CV";
       cvInput.focus();
     }
-    // Kiểm tra kích thước file (tối đa 5MB)
     else if (cvInput.files[0].size > 5 * 1024 * 1024) {
       isValid = false;
       errorMessage = "Kích thước file CV không được vượt quá 5MB";
       cvInput.focus();
     }
-    // Kiểm tra định dạng file
     else {
       const allowedTypes = [".pdf", ".doc", ".docx"];
       const fileName = cvInput.files[0].name.toLowerCase();
@@ -1082,18 +1145,43 @@ if (recruitmentForm) {
     }
 
     if (!isValid) {
-      // Hiển thị thông báo lỗi
       showNotification(errorMessage, "error");
       return;
     }
 
-    // Nếu form hợp lệ, hiển thị thông báo thành công
-    showNotification(
-      "Cảm ơn bạn đã nộp hồ sơ! Chúng tôi đã nhận được thông tin của bạn và sẽ liên hệ trong thời gian sớm nhất.",
-      "success"
-    );
+    const formData = new FormData();
+    formData.append("firstName", firstNameInput.value.trim());
+    formData.append("lastName", lastNameInput.value.trim());
+    formData.append("phone", phoneInput.value.trim());
+    formData.append("email", emailInput.value.trim());
+    formData.append("experience", experienceInput.value.trim());
+    formData.append("positionId", positionInput.value);
+    formData.append("cvFile", cvInput.files[0]);
 
-    // Reset form
-    recruitmentForm.reset();
+    const submitBtn = recruitmentForm.querySelector(".btn-submit");
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Đang gửi...";
+
+    try {
+      const res = await fetch("https://admin.kynguyenhealthcare.com/api/job-applications", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.message || `Lỗi ${res.status}`);
+      }
+      showNotification(
+        "Cảm ơn bạn đã nộp hồ sơ! Chúng tôi đã nhận được thông tin của bạn và sẽ liên hệ trong thời gian sớm nhất.",
+        "success"
+      );
+      recruitmentForm.reset();
+    } catch (err) {
+      showNotification(err.message || "Gửi hồ sơ thất bại. Vui lòng thử lại.", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
   });
 }
