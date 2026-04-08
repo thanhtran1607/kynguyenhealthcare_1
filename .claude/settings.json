@@ -21,7 +21,12 @@
       "Bash(mv _backup/image .)",
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(docker compose:*)",
+      "Bash(where docker:*)",
+      "Bash(\"/c/Program Files/Docker/Docker/resources/bin/docker.exe\" --version)",
+      "Bash(cmd.exe /c \"where docker\")",
+      "Bash(cmd.exe /c \"docker --version\")"
     ]
   }
 }
