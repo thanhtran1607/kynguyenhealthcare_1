@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p _backup)",
+      "Bash(cp index.html caregivers.html lien-he.html chinh-sach-bao-mat.html teaching.html styles.css script.js _backup/)",
+      "Bash(ls *.html)",
+      "Bash(ls *.css)",
+      "Bash(ls *.js)",
+      "Bash(cp Index3.html _backup/)",
+      "Bash(rm Index3.html)",
+      "Bash(npx create-next-app@latest . --typescript --app --eslint --no-tailwind --no-src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(mv styles.css _backup/)",
+      "Bash(mv .nojekyll _backup/)",
+      "Bash(mv image:*)",
+      "Bash(mv README.md _backup/)",
+      "Read(//d//**)",
+      "Bash(mkdir -p _temp_backup)",
+      "Bash(mv d:/kynguyenhealthcare_1/_backup d:/_temp_backup/)",
+      "Bash(mv d:/_temp_backup/_backup .)",
+      "Bash(rmdir d:/_temp_backup)",
+      "Bash(mv _backup/image .)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)"
+    ]
+  }
+}
